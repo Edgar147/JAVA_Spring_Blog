@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Sing in</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous" />
+</head>
+<body class="bg-light">
+
+<div class="container p-3 my-3 bg-secondary">
+    <h1 class="d-flex justify-content-center">Hello, please Sing in</h1>
+
+    <br/>
+    <form th:action="@{/login}" method="post" >
+        <span style="font-weight: bold; " class="d-flex justify-content-center"><span  style="margin-right: 5px;">Login</span><input type="email" name="email" /></span>
+        <span style="font-weight: bold; margin-right: 29px;" class="d-flex justify-content-center"><span style="margin-right: 5px;">Password</span><input type="password" name="password" /> </span>   <br/>
+
+        <input type="submit" value="Login" class="btn btn-primary" />
+    </form>
+
+</div>
+
+</body>
+</html>
