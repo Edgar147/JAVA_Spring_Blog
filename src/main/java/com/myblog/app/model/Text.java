@@ -10,8 +10,8 @@ public class Text {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idText;
 
-    @OneToOne//(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id", referencedColumnName = "id")
     private User user;
 
     private String text;
