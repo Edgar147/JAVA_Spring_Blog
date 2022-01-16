@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Sign Up - CodeJava</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body class="bg-light" style="color:rgb(245, 228, 228);">
+
+<div class="container p-3 my-3 bg-secondary">
+    <h1 class="d-flex justify-content-center">Sing Up</h1>
+    <form th:action="@{/process_register}" th:object="${user}" method="post" >
+    <br/>
+    <span style="font-weight: bold; " class="d-flex justify-content-center"><span  style="margin-right: 5px;">Login</span><input type="email" th:field="*{email}"  /></span> <br/>
+    <span style="font-weight: bold; margin-right: 29px;" class="d-flex justify-content-center"><span style="margin-right: 5px;">Password</span><input type="password" th:field="*{password}" /> </span>   <br/>
+    <span style="font-weight: bold; margin-right: 1px;" class="d-flex justify-content-center"><span style="margin-right: 5px;">Name</span><input type="text" th:field="*{name}" /> </span>   <br/>
+
+    <span class="d-flex justify-content-center"><button style="margin-left: 20px;" type="submit" class="btn btn-info  justify-content-center">Sing Up</button></span>
+    </form>
+
+</div>
+
+</body>
+</html>
