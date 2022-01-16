@@ -8,7 +8,7 @@ import javax.persistence.*;
 public class Text {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idText;
+    private String idText;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id", referencedColumnName = "id")
@@ -16,12 +16,11 @@ public class Text {
 
     private String text;
 
-
-    public Long getIdText() {
+    public String getIdText() {
         return idText;
     }
 
-    public void setIdText(Long idText) {
+    public void setIdText(String idText) {
         this.idText = idText;
     }
 

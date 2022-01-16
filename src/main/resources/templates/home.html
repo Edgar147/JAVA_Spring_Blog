@@ -9,10 +9,24 @@
 </head>
 <body class="bg-light d-flex justify-content-center">
 
-<div class=" bg-secondary  " style="min-height: 700px; min-width: 800px; ">
-    <textarea style="width: 100%; margin-top: 100px;" name="texting"placeholder="Write  your text here..." ></textarea>
-    <button style="margin-right: 20px; float:right;" type="button" class="btn btn-info">Add</button>
+<!--<div th:each="el: ${user}">-->
 
+<!--<input type="text" th:value="${el.id}" name="title" ><br>-->
+<!--</div>-->
+<input type="text" th:value="${myid}" name="title" ><br>-->
+
+<!--<span th:text="${#authentication.getPrincipal().getUsername()}"></span>-->
+
+<div class=" bg-secondary  " style="min-height: 700px; min-width: 800px; ">
+    <form th:action="@{/process_addText}" th:object="${text}" method="post" >
+
+    <textarea style="width: 100%; margin-top: 100px;" name="text"placeholder="Write  your text here..." ></textarea>
+    <button style="margin-right: 20px; float:right;" type="submit" class="btn btn-info">Add</button>
+
+<!--        <div th:text="${#authentication.id} ></div>-->
+
+
+</form>
 
 </div>
 
