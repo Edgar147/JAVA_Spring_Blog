@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 @Controller
 public class MainController {
@@ -114,16 +115,35 @@ if(authentication==null || authentication instanceof AnonymousAuthenticationToke
     @GetMapping("/home")
     public String mySuccess(Model model) {
 
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        String name = auth.getName();
-//
-//        User posts=userRepo.findByEmail(name);
-//        model.addAttribute("myid",posts.getId());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+
+        User posts=userRepo.findByEmail(name);
+
+
+////        model.addAttribute("myid",posts.getId());
 //        LOGGER.info("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 //        LOGGER.info("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-//        LOGGER.info("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-//        model.addAttribute("textzz",new Text());
-//        LOGGER.info("zfzedq"+model.toString());
+        LOGGER.info("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
+        Long x= posts.getId();
+
+        List<Text> correct=new ArrayList<>();
+
+        List<Text> textzz = textRepo.findAll();
+        for (Text b: textzz) {
+                if (b.getUser().getId().equals(x)){
+                    correct.add(b);
+                }
+
+
+
+
+        }
+        model.addAttribute("textzz",correct);
+//        model.addAttribute("x",x);
+        LOGGER.info("zfzedq"+model.toString());
+//        LOGGER.info("xxxx"+x);
         return "home";
     }
 

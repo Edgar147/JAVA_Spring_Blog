@@ -32,8 +32,21 @@
 
 
 </form>
+    <div th:each="elem :${textzz}" >
+        <h1 th:text="${elem.text}"></h1>
+<!--        <h1 th:text="${x}"></h1>-->
+    </div>
+
 
 </div>
+
+
+
+
+
+
+
+
 
 </body>
 </html>
