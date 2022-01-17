@@ -11,7 +11,7 @@
 
 <div class="container p-3 my-3 bg-secondary">
     <h1 class="d-flex justify-content-center">Sing Up</h1>
-    <form th:action="@{/process_register}" th:object="${user}" method="post" >
+    <form th:action="@{/process_register}" th:object="${user9}" method="post" >
     <br/>
     <span style="font-weight: bold; " class="d-flex justify-content-center"><span  style="margin-right: 5px;">Login</span><input type="email" th:field="*{email}"  /></span> <br/>
     <span style="font-weight: bold; margin-right: 29px;" class="d-flex justify-content-center"><span style="margin-right: 5px;">Password</span><input type="password" th:field="*{password}" /> </span>   <br/>

@@ -1,26 +1,29 @@
 package com.myblog.app.model;
 
-import javax.persistence.Entity;
 import javax.persistence.*;
 
-
 @Entity
+@Table(name = "texts")
+
 public class Text {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String idText;
+    private Long idText;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @Column(name = "text", nullable = false, length = 300)
+    private String text;
+
+
+    @OneToOne
     @JoinColumn(name = "id", referencedColumnName = "id")
     private User user;
 
-    private String text;
 
-    public String getIdText() {
+    public Long getIdText() {
         return idText;
     }
 
-    public void setIdText(String idText) {
+    public void setIdText(Long idText) {
         this.idText = idText;
     }
 

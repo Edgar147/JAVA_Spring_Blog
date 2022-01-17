@@ -1,5 +1,6 @@
 package com.myblog.app.controller;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.myblog.app.model.Text;
 import com.myblog.app.model.User;
 import com.myblog.app.repository.TextRepository;
@@ -12,12 +13,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 @Controller
 public class MainController {
+    private static final Logger LOGGER=LoggerFactory.getLogger(MainController.class);
+
     @Autowired
     private UserRepository userRepo;
 
@@ -31,19 +35,21 @@ public class MainController {
 
 
 
+
     @GetMapping("/login")
     public String myLogin() {
         Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
 if(authentication==null || authentication instanceof AnonymousAuthenticationToken){ return "login";}
 
 //        return "users";
+
         return "login";
     }
 
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("user9", new User());
 
         return "singup_form";
     }
@@ -61,23 +67,63 @@ if(authentication==null || authentication instanceof AnonymousAuthenticationToke
     }
 
 
+//    @PostMapping("/process_addText")
+//    public String processAddText(@ModelAttribute  Text text1) {
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        String name = auth.getName();
+//        User myUser=userRepo.findByEmail(name);
+//
+//       text1.setUser(myUser);
+////        text1.setText("sfqsfdsqdf");
+//
+//        textRepo.save(text1);
+//
+//
+//        return "redirect:/home";
+//    }
+
+
+
     @PostMapping("/process_addText")
-    public String processAddText(User user,Text text) {
-        textRepo.save(text);
+    public String processAddText(String text) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        User myUser=userRepo.findByEmail(name);
 
 
-        return "home";
+        Text myTextInstance=new Text();
+        myTextInstance.setText(text);
+        myTextInstance.setUser(myUser);
+
+        textRepo.save(myTextInstance);
+
+        return "redirect:/home";
     }
+//
+
+
+
+
+
+
+
+
+
 
 
     @GetMapping("/home")
     public String mySuccess(Model model) {
 
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name = auth.getName();
-
-        User posts=userRepo.findByEmail(name);
-        model.addAttribute("myid",posts.getId());
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        String name = auth.getName();
+//
+//        User posts=userRepo.findByEmail(name);
+//        model.addAttribute("myid",posts.getId());
+//        LOGGER.info("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+//        LOGGER.info("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+//        LOGGER.info("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+//        model.addAttribute("textzz",new Text());
+//        LOGGER.info("zfzedq"+model.toString());
         return "home";
     }
 
